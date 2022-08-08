@@ -1,0 +1,51 @@
+.usertask {
+    background: #E9F3FF;
+    background-image: url(../../../../../../img/home/circle.png ),
+        url(../../../../../../img/home/task.png);
+    background-repeat: no-repeat, no-repeat;
+    background-position: 0 0, calc(100% - 12px) 100%;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin-bottom: 20px;
+
+    .title {
+        display: flex;
+        font-size: 16px;
+        font-family: Microsoft Yahei;
+        display: flex;
+        align-items: center;
+
+        .sub-title {
+            font-size: 12px;
+            color: #999999;
+            margin-left: 10px;
+        }
+    }
+
+    .status {
+        display: flex;
+        align-items: center;
+        height: 100%;
+
+        .item {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+
+            .stanumber {
+                font-size: 36px;
+                color: #072074;
+                text-shadow: 2px 4px 7px rgb(85 132 255 / 50%);
+                font-weight: 600;
+            }
+
+            .statext {
+                font-size: 12px;
+                color: #91a7dc;
+            }
+        }
+    }
+}

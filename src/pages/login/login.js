@@ -5,15 +5,22 @@ import Logo from '../../img/logo.png';
 import common from "./common/common";
 import { Form, Input, Button, } from 'antd';
 import { MobileOutlined, LockOutlined, SafetyCertificateOutlined } from '@ant-design/icons';   //logo
+import { useNavigate } from "react-router";
+import { Link } from 'react-router-dom';
 
 
 function Login() {
+    const navigate = useNavigate();
     const [loginName, setLoginName] = useState('admin')
     const [clientToken, setClientToken] = useState('')
 
     const onFinish = (values) => {        //固定写法
         console.log('Received values of form: ', values);
     };
+
+    // const handClick =() => {
+    //     navigate('/home')
+    // }
 
     useEffect(() => {
     }, [])
@@ -70,6 +77,7 @@ function Login() {
                     </Button>
                 </Form>
             </div>
+            <Link to='/home'>登录</Link>
         </div>
     )
 }

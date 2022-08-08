@@ -13,9 +13,7 @@ function Home() {
             <div className="out">
                 <Menus></Menus>
                 <div className="content">
-                    <div style={{ padding: '20px' }}>
                         <Outlet></Outlet>
-                    </div>
                 </div>
             </div>
         </>

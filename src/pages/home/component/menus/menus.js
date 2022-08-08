@@ -15,6 +15,8 @@ import {
     AccountBookOutlined,
     MenuUnfoldOutlined,
     MenuFoldOutlined,
+    RightOutlined,
+    LeftOutlined,
 } from '@ant-design/icons';
 
 
@@ -22,12 +24,12 @@ function Menus() {
 
     const [collapsed, setCollapsed] = useState(false);
 
-    const toggleCollapsed = () => {
+    const toggleCollapsed = () => {        //menu缩放
         setCollapsed(!collapsed);
     };
 
 
-    function getItem(label, key, icon, children, type) {
+    function getItem(label, key, icon, children, type) {    //menu固定写法
         return {
             key,
             icon,
@@ -86,7 +88,7 @@ function Menus() {
                         handClick()
                     }}
                 />
-                <Button
+                <Button                   //Button实现menu收缩
                     type="primary"
                     onClick={toggleCollapsed}
                     style={{
@@ -94,7 +96,8 @@ function Menus() {
                         width: '100%',
                     }}
                 >
-                    {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+                    {/* Button的坍塌前后logo */}
+                    {collapsed ? <RightOutlined /> : <LeftOutlined />}   
                 </Button>
             </div>
         </>
