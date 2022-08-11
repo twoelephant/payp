@@ -24,7 +24,7 @@ function Menus() {
 
     const [collapsed, setCollapsed] = useState(false);
 
-    const toggleCollapsed = () => {        //menu缩放
+    const toggleCollapsed = () => {        //menu缩放按钮
         setCollapsed(!collapsed);
     };
 
@@ -57,7 +57,7 @@ function Menus() {
         ]),
         getItem('人员管理', 'sub4', <UserOutlined />, [
             getItem(<NavLink to="/home/user/index">人员列表</NavLink>, '10'),
-            getItem(<NavLink to="/home/user/task">人员统计</NavLink>, '11'),
+            getItem(<NavLink to="/home/user/task">人效统计</NavLink>, '11'),
             getItem(<NavLink to="/home/user/work">工作量列表</NavLink>, '12'),
         ]),
         getItem('商品管理', 'sub5', <RestOutlined />, [
