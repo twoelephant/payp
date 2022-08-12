@@ -480,3 +480,125 @@ mockjs.mock('/api/api4', 'get', {
         },
     ]
 })
+mockjs.mock('/api/api5', 'get', {          //region
+    status: true,
+    data: [
+        {
+            key: '1',
+            num: '1',
+            areanames: '霍营街道',
+            bit: '3',
+            Remarks: '霍营街道',
+        },
+        {
+            key: '2',
+            num: '2',
+            areanames: '城北街道',
+            bit: '3',
+            Remarks: '城北街道',
+        },
+        {
+            key: '3',
+            num: '3',
+            areanames: '西直门街道',
+            bit: '3',
+            Remarks: '西直门街道',
+        },
+        {
+            key: '4',
+            num: '4',
+            areanames: '金燕龙办公楼',
+            bit: '3',
+            Remarks: '金燕龙办公楼',
+        },
+        {
+            key: '5',
+            num: '5',
+            areanames: '北京1街道',
+            bit: '3',
+            Remarks: '北京1街道',
+        },
+        {
+            key: '6',
+            num: '6',
+            areanames: '北京5街道',
+            bit: '3',
+            Remarks: '北京5街道',
+        },
+        {
+            key: '7',
+            num: '7',
+            areanames: '北京6街道',
+            bit: '3',
+            Remarks: '北京6街道',
+        },
+    ]
+})
+mockjs.mock('/api/api6', 'get', {          //node
+    status: true,
+    data: [
+        {
+            key: '1',
+            num: '1',
+            pointnames: '北京广场',
+            area: '北京1街道',
+            business: '学校',
+            partners:'天华物业',
+            address:'北京广场1层'
+        },
+        {
+            key: '2',
+            num: '2',
+            pointnames: '北京广场',
+            area: '北京2街道',
+            business: '学校',
+            partners:'天华物业',
+            address:'北京广场1层'
+        },
+        {
+            key: '3',
+            num: '3',
+            pointnames: '北京广场',
+            area: '北京2街道',
+            business: '学校',
+            partners:'天华物业',
+            address:'北京广场1层'
+        },
+        {
+            key: '4',
+            num: '4',
+            pointnames: '北京广场',
+            area: '北京4街道',
+            business: '学校',
+            partners:'天华物业',
+            address:'北京广场1层'
+        },
+        {
+            key: '5',
+            num: '5',
+            pointnames: '北京广场',
+            area: '北京1街道',
+            business: '学校',
+            partners:'天华物业',
+            address:'北京广场1层'
+        },
+        {
+            key: '6',
+            num: '6',
+            pointnames: '北京广场',
+            area: '北京1街道',
+            business: '学校',
+            partners:'天华物业',
+            address:'北京广场1层'
+        },
+        {
+            key: '7',
+            num: '7',
+            pointnames: '北京广场',
+            area: '北京1街道',
+            business: '学校',
+            partners:'天华物业',
+            address:'北京广场1层'
+        },
+    ]
+})

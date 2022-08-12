@@ -126,6 +126,7 @@ function Userwork() {
                                 className='busrow1'>查看详情</div>
                         )} />
                 </Table>
+
                 <Modal title="人员详情"         //查看详情
                     visible={isModalVisible}   //显示状态
                     // onOk={handleOk}
@@ -133,17 +134,44 @@ function Userwork() {
                     footer={null}
                     destroyOnClose           //关闭清空内容
                     maskClosable={false}
+                    width={'800px'}
                 >
-                    <div>
-                        <div>
-                            <div>人员名称:{names}</div>
-                            <div>职位:{job}</div>
-                            <div>联系电话:{phone}</div>
-                        </div>
-                        <div>
-                            <div>负责区域:{area}</div>
-                        </div>
+                    <div className='usermess'>
+                        <div>人员名称：{names}</div>
+                        <div>职位：{job}</div>
+                        <div>联系电话：{phone}</div>
+                        <div>负责区域：{area}</div>
                     </div>
+                    <table className='usertable'>
+                        <tr>
+                            <th></th>
+                            <th>总工单数</th>
+                            <th>拒绝工单</th>
+                            <th>完成工单</th>
+                            <th>进行中工单</th>
+                        </tr>
+                        <tr>
+                            <th>本周</th>
+                            <th>0</th>
+                            <th>0</th>
+                            <th>0</th>
+                            <th>0</th>
+                        </tr>
+                        <tr>
+                            <th>本月</th>
+                            <th>0</th>
+                            <th>0</th>
+                            <th>0</th>
+                            <th>0</th>
+                        </tr>
+                        <tr>
+                            <th>本年</th>
+                            <th>0</th>
+                            <th>0</th>
+                            <th>0</th>
+                            <th>0</th>
+                        </tr>
+                    </table>
                     {/* <Form
                         form={form}        //用setIsModalVisible必须添加form={form} 
                         labelCol={{
@@ -244,6 +272,7 @@ function Userwork() {
                         </Form.Item>
                     </Form> */}
                 </Modal>
+
                 <div className="paginations">
                     <Pagination
                         current={current}  //当前

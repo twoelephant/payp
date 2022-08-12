@@ -1,7 +1,7 @@
 import './sku.less';
 import React, { useEffect, useState } from "react";
 import 'antd/dist/antd.css';
-import { Button, Input, Table, Modal, Pagination, Form, Select } from "antd";
+import { Button, Input, Table, Modal, Pagination, Form, Select, InputNumber } from "antd";
 import { SearchOutlined, PlusCircleOutlined } from '@ant-design/icons';
 import Column from "antd/lib/table/Column";
 import axios from "axios";
@@ -165,7 +165,11 @@ function Sku() {
                                 }
                             ]}
                         >
-                            <Input placeholder='请输入'
+                            <InputNumber
+                                style={{ width: '100%' }}
+                                placeholder='请输入'
+                                step='0.01'
+                                stringMode
                             />
                         </Form.Item>
                         <Form.Item
@@ -192,6 +196,8 @@ function Sku() {
                             ]}
                         >
                             <Input placeholder='请输入'
+                                showCount
+                                maxLength={10}
                             />
                         </Form.Item>
 
