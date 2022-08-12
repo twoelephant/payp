@@ -1,7 +1,7 @@
 import './userindex.less';
 import React, { useEffect, useState } from "react";
 import 'antd/dist/antd.css';
-import { Button, Input,  Table, Modal, Pagination, Form, Select } from "antd";
+import { Button, Input, Table, Modal, Pagination, Form, Select } from "antd";
 import { SearchOutlined, PlusCircleOutlined } from '@ant-design/icons';
 import Column from "antd/lib/table/Column";
 import axios from "axios";
@@ -9,6 +9,7 @@ import '../../../../api/api';
 
 function Userindex() {
     const { Option } = Select;
+    const [form] = Form.useForm();       //默认写法
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [tabeldata, setTabledata] = useState()
     const [tablelength, setTablelength] = useState(0)
@@ -46,16 +47,21 @@ function Userindex() {
         setPhone(e.phone)
         setJob(e.job)
         setArea(e.area)
-        // form.setFieldsValue({
-        // phone: e.phone
-        // names: 'eee',
-        // })
+        setTimeout(() => {
+            form.setFieldsValue({
+                phone: e.phone,
+                names: e.names,
+                job: e.job,
+                area: e.area,
+            });
+        }, 0);
     }
 
     const handleCancel = () => {
         setIsModalVisible(false);
     };
     const handleCancel2 = () => {
+        console.log(1111111);
         setIsModalVisible(false);
     };
 
@@ -115,28 +121,29 @@ function Userindex() {
                     maskClosable={false}
                 >
                     <Form
+                        form={form}        //用setIsModalVisible必须添加form={form} 
                         labelCol={{
                             span: 5
                         }}
                         preserve={false}      //搭配destroyOnClose
-                        name='editor'>
+                        name='member'>
                         <Form.Item
-                            // name="names"
+                            name="names"
                             label='人员名单'
                             rules={[
                                 {
                                     required: true,
                                     message: '请输入'
-                                }
+                                },
                             ]}
                         >
                             <Input placeholder='请输入'
-                                defaultValue={names}   //默认值
+                                // defaultValue={names}   //默认值
                                 showCount
                                 maxLength={5} />
                         </Form.Item>
                         <Form.Item
-                            // name='job'
+                            name='job'
                             label='职业'
                             rules={[
                                 {
@@ -146,14 +153,14 @@ function Userindex() {
                             ]}
                         >
                             <Select
-                                defaultValue={job}
+                                // defaultValue={job}
                                 placeholder='请选择'>
                                 <Option value='维修者'>维修者</Option>
                                 <Option value='运营者'>运营者</Option>
                             </Select>
                         </Form.Item>
                         <Form.Item
-                            // name='phone'
+                            name='phone'
                             label='联系电话'
                             rules={[
                                 {
@@ -163,12 +170,13 @@ function Userindex() {
                             ]}
                         >
                             <Input placeholder='请输入'
-                                defaultValue={phone}
+                                // defaultValue={phone}
                                 showCount
                                 maxLength={11} />
                         </Form.Item>
                         <Form.Item
                             label='负责区域'
+                            name='area'
                             rules={[
                                 {
                                     required: true,
@@ -177,7 +185,7 @@ function Userindex() {
                             ]}
                         >
                             <Select
-                                defaultValue={area}
+                                // defaultValue={area}
                                 placeholder='请选择'>
                                 <Option value='十一区'>十一区</Option>
                                 <Option value='十二区'>十二区</Option>
@@ -212,9 +220,8 @@ function Userindex() {
                         </Form.Item>
                     </Form>
                 </Modal>
-                <div style={{ overflow: 'hidden' }}>
+                <div className="paginations">
                     <Pagination
-                        style={{ marginTop: '10px', float: 'right' }}
                         current={current}  //当前
                         total={tablelength}   //数据总条数
                         onChange={change}     //点击事件

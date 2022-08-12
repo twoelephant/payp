@@ -125,9 +125,8 @@ function Order() {
                         </div>
                     </div>
                 </Modal>
-                <div style={{ overflow: 'hidden' }}>
+                <div className="paginations">
                     <Pagination
-                        style={{ marginTop: '10px', float: 'right' }}
                         current={current}  //当前
                         total={tablelength}   //数据总条数
                         onChange={change}     //点击事件

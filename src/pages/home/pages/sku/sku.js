@@ -1,4 +1,4 @@
-import './sku';
+import './sku.less';
 import React, { useEffect, useState } from "react";
 import 'antd/dist/antd.css';
 import { Button, Input, Table, Modal, Pagination, Form, Select } from "antd";
@@ -9,6 +9,7 @@ import '../../../../api/api';
 
 function Sku() {
     const { Option } = Select;
+    const [form] = Form.useForm();
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [tabeldata, setTabledata] = useState()
     const [tablelength, setTablelength] = useState(0)
@@ -43,11 +44,15 @@ function Sku() {
     const showModal = (e) => {
         setIsModalVisible(true);
         console.log(e);
-        setNames(e.names)
-        setBrand(e.brand)
-        setPrice(e.price)
-        setType(e.type)
-        setSpecifications(e.SearchOutlined)
+        setTimeout(() => {
+            form.setFieldsValue({
+                names: e.names,
+                brand: e.brand,
+                price: e.price,
+                type: e.type,
+                specifications: e.specifications,
+            });
+        }, 0);
     }
 
     const handleCancel = () => {
@@ -116,13 +121,14 @@ function Sku() {
                     maskClosable={false}
                 >
                     <Form
+                        form={form}
                         labelCol={{
                             span: 5
                         }}
                         preserve={false}      //搭配destroyOnClose
-                        name='editor'>
+                        name='goods'>
                         <Form.Item
-                            // name="names"
+                            name="names"
                             label='商品名称'
                             rules={[
                                 {
@@ -132,13 +138,12 @@ function Sku() {
                             ]}
                         >
                             <Input placeholder='请输入'
-                                defaultValue={names}   //默认值
                                 showCount
                                 maxLength={15} />
                         </Form.Item>
                         <Form.Item
-                            // name='job'
-                            label='职业'
+                            name='brand'
+                            label='品牌'
                             rules={[
                                 {
                                     required: true,
@@ -147,11 +152,11 @@ function Sku() {
                             ]}
                         >
                             <Input placeholder='请输入'
-                                defaultValue={brand}   //默认值
                                 showCount
                                 maxLength={10} />
                         </Form.Item>
                         <Form.Item
+                            name='price'
                             label='商品价格(元)'
                             rules={[
                                 {
@@ -161,10 +166,10 @@ function Sku() {
                             ]}
                         >
                             <Input placeholder='请输入'
-                                defaultValue={price}   //默认值
                             />
                         </Form.Item>
                         <Form.Item
+                            name='type'
                             label='商品类型'
                             rules={[
                                 {
@@ -174,10 +179,10 @@ function Sku() {
                             ]}
                         >
                             <Input placeholder='请输入'
-                                defaultValue={type}   //默认值
                             />
                         </Form.Item>
                         <Form.Item
+                            name='specifications'
                             label='规格'
                             rules={[
                                 {
@@ -187,7 +192,6 @@ function Sku() {
                             ]}
                         >
                             <Input placeholder='请输入'
-                                defaultValue={specifications}   //默认值
                             />
                         </Form.Item>
 
@@ -215,9 +219,8 @@ function Sku() {
                         </Form.Item>
                     </Form>
                 </Modal>
-                <div style={{ overflow: 'hidden' }}>
+                <div className="paginations">
                     <Pagination
-                        style={{ marginTop: '10px', float: 'right' }}
                         current={current}  //当前
                         total={tablelength}   //数据总条数
                         onChange={change}     //点击事件
