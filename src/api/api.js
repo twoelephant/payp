@@ -602,3 +602,38 @@ mockjs.mock('/api/api6', 'get', {          //node
         },
     ]
 })
+mockjs.mock('/api/api7', 'get', {          //partner
+    status: true,
+    data: [
+        {
+            key: '1',
+            num: '1',
+            partner: '天华物业',
+            account: '13800000',
+            quantity: '99',
+            Divide:'88',
+            contacts:'JOJO',
+            phone:'17766233007',
+        },
+        {
+            key: '2',
+            num: '2',
+            partner: '天华物业',
+            account: '13800000',
+            quantity: '99',
+            Divide:'88',
+            contacts:'JOJO',
+            phone:'17766233007',
+        },
+        {
+            key: '3',
+            num: '3',
+            partner: '天华物业',
+            account: '13800000',
+            quantity: '99',
+            Divide:'88',
+            contacts:'JOJO',
+            phone:'17766233007',
+        },
+    ]
+})

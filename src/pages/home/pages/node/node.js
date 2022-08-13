@@ -51,8 +51,10 @@ function Node() {
         console.log(e);
         setTimeout(() => {
             form.setFieldsValue({
-                areanames: e.areanames,
-                Remarks: e.Remarks,
+                pointnames: e.pointnames,
+                area: e.area,
+                business:e.business,
+                partners:e.partners
             });
         }, 0);
     }
@@ -236,12 +238,6 @@ function Node() {
                             ]}
                         >
                             <Optionss />
-                            {/* <Cascader
-                                allowClear
-                                options={options}   //数据来源
-                                showSearch          //在选择框中显示搜索框
-                                placeholder="请选择地址"
-                            /> */}
                         </Form.Item>
                         <Form.Item>
                             <div className="addbutton">

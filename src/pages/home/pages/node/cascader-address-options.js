@@ -6,6 +6,7 @@ import provinces from 'china-division/dist/provinces.json';
 import cities from 'china-division/dist/cities.json';
 import areas from 'china-division/dist/areas.json';
 
+import hkmotw from 'china-division/dist/HK-MO-TW.json'
 
 areas.forEach((area) => {
     const matchCity = cities.filter(city => city.code === area.cityCode)[0];
@@ -36,6 +37,27 @@ const options = provinces.map(province => ({
     children: province.children,
 }));
 
+// 合并港澳台行政区
+const _hkmotw = Object.entries(hkmotw).map(([provinceName, provinceItem]) => {
+    return {
+        label: provinceName,
+        value: (Math.random() * 1e10).toFixed(),
+        children: Object.entries(provinceItem).map(([cityName, cityItem]) => {
+            return {
+                label: cityName,
+                value: (Math.random() * 1e10).toFixed(),
+                children: cityItem.map(area => {
+                    return {
+                        label: area,
+                        value: (Math.random() * 1e10).toFixed()
+                    }
+                })
+            }
+        })
+    }
+})
+
+var options1 = options.concat(_hkmotw)
 
 function Optionss() {
 
@@ -43,7 +65,7 @@ function Optionss() {
     return (
 
         <Cascader
-            options={options}
+            options={options1}
             showSearch
             placeholder="请选择地址"
         />
