@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Context } from "../../../../../../App";
 import './Salestaus.less';
 
 function Salestaus() {
+    const { startdate } = useContext(Context)
+    const { enddate } = useContext(Context)
     return (
         <div className="salestaus">
             <div className="title">
                 <div>销售统计</div>
-                <div className="sub-title">2022.08.07 ~ 2022.08.08</div>
+                <div className="sub-title">{startdate} ~ {enddate}</div>
             </div>
             <div className="status">
                 <div className="item">

@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Context } from "../../../../../../App";
 import './Usertask.less';
 
 function Usertask() {
+    const { startdate } = useContext(Context)
+    const { enddate } = useContext(Context)
+
     return (
         <div className="usertask">
             <div className="title">
                 <div>工单统计</div>
-                <div className="sub-title">2022.08.07 ~ 2022.08.08</div>
+                <div className="sub-title">{startdate} ~ {enddate}</div>
             </div>
             <div className="status">
                 <div className="item">

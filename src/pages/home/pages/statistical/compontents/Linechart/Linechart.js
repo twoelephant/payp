@@ -1,12 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import './Linechart.less';
 import { Area, Column } from '@ant-design/plots';
 import Data1 from './data.json';
+import { Context } from "../../../../../../App";
 
 function Llinchart() {
 
+    const { startdate } = useContext(Context)
+    const { enddate } = useContext(Context)
+    const { weekstart } = useContext(Context)
+    const { yearstart } = useContext(Context)
+
     const [dateselect, setDateselect] = useState(1)
     const [data, setData] = useState([]);
+    const [start, setStart] = useState()
+
     const data2 = [
         {
             type: '北京1街道',
@@ -46,7 +54,7 @@ function Llinchart() {
         smooth: true,
         color: '#ff5757',
         point: {
-            color: 'black',
+            color: 'red',
         },
         areaStyle: () => {
             return {
@@ -88,22 +96,26 @@ function Llinchart() {
     useEffect(() => {
         // asyncFetch();
         setData(Data1)
+        setStart(weekstart)
     }, [])
 
 
     const handClick = () => {
         if (dateselect != 1) {
             setDateselect(1)
+            setStart(weekstart)
         }
     }
     const handClick2 = () => {
         if (dateselect != 2) {
             setDateselect(2)
+            setStart(startdate)
         }
     }
     const handClick3 = () => {
         if (dateselect != 3) {
             setDateselect(3)
+            setStart(yearstart)
         }
     }
 
@@ -112,7 +124,7 @@ function Llinchart() {
             <div className="title">
                 <div style={{ display: "flex", alignItems: "center" }}>
                     <div>销售数据</div>
-                    <div className="sub-title">2022.08.07 ~ 2022.08.08</div>
+                    <div className="sub-title">{start} ~ {enddate}</div>
                 </div>
                 <div className="dateselect">
                     <div className={dateselect === 1 ? "week" : ""}

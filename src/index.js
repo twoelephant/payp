@@ -10,7 +10,7 @@ import 'moment/locale/zh-cn';              //时间类组件需要的包
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/* 设置语言 */}
+    {/* 设置antd语言 */}
     <ConfigProvider locale={zhCN}>
       <App />
     </ConfigProvider>

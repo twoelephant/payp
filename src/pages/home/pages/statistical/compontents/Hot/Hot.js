@@ -1,16 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Context } from "../../../../../../App";
 import './Hot.less';
-import Top1 from '../../../../../../img/home/top1.png'
-import Top2 from '../../../../../../img/home/top2.png'
-import Top3 from '../../../../../../img/home/top3.png'
-import Top from '../../../../../../img/home/top.png'
 
 function Hot() {
+    const { startdate } = useContext(Context)
+    const { enddate } = useContext(Context)
+
     return (
         <div className="hot">
             <div className="title">
                 <div>商品热榜</div>
-                <div className="sub-title">2022.08.01 ~ 2022.08.08</div>
+                <div className="sub-title">{startdate} ~ {enddate}</div>
             </div>
             <div className="top">
                 <div className="tout">

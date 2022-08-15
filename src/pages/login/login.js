@@ -13,6 +13,7 @@ function Login() {
     const navigate = useNavigate();
     const [loginName, setLoginName] = useState('admin')
     const [clientToken, setClientToken] = useState('')
+    const [codeImage, setCodeImage] = useState('')
 
     const onFinish = (values) => {        //固定写法
         console.log('Received values of form: ', values);
@@ -23,6 +24,7 @@ function Login() {
     // }
 
     useEffect(() => {
+        
     }, [])
 
     return (

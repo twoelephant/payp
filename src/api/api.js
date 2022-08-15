@@ -399,7 +399,7 @@ mockjs.mock('/api/api4', 'get', {
             phone: '13252543345',
             finish: '0',
             ing: '0',
-            reject:'0',
+            reject: '0',
         },
         {
             key: '2',
@@ -410,7 +410,7 @@ mockjs.mock('/api/api4', 'get', {
             phone: '13252543345',
             finish: '0',
             ing: '0',
-            reject:'0',
+            reject: '0',
         },
         {
             key: '3',
@@ -421,7 +421,7 @@ mockjs.mock('/api/api4', 'get', {
             phone: '13252543345',
             finish: '0',
             ing: '0',
-            reject:'0',
+            reject: '0',
         },
         {
             key: '4',
@@ -432,7 +432,7 @@ mockjs.mock('/api/api4', 'get', {
             phone: '13252543345',
             finish: '0',
             ing: '0',
-            reject:'0',
+            reject: '0',
         },
         {
             key: '5',
@@ -443,7 +443,7 @@ mockjs.mock('/api/api4', 'get', {
             phone: '13252543345',
             finish: '0',
             ing: '0',
-            reject:'0',
+            reject: '0',
         },
         {
             key: '6',
@@ -454,7 +454,7 @@ mockjs.mock('/api/api4', 'get', {
             phone: '13252543345',
             finish: '0',
             ing: '0',
-            reject:'0',
+            reject: '0',
         },
         {
             key: '7',
@@ -465,7 +465,7 @@ mockjs.mock('/api/api4', 'get', {
             phone: '13252543345',
             finish: '0',
             ing: '0',
-            reject:'0',
+            reject: '0',
         },
         {
             key: '8',
@@ -476,7 +476,7 @@ mockjs.mock('/api/api4', 'get', {
             phone: '13252543345',
             finish: '0',
             ing: '0',
-            reject:'0',
+            reject: '0',
         },
     ]
 })
@@ -543,8 +543,8 @@ mockjs.mock('/api/api6', 'get', {          //node
             pointnames: '北京广场',
             area: '北京1街道',
             business: '学校',
-            partners:'天华物业',
-            address:'北京广场1层'
+            partners: '天华物业',
+            address: '北京广场1层'
         },
         {
             key: '2',
@@ -552,8 +552,8 @@ mockjs.mock('/api/api6', 'get', {          //node
             pointnames: '北京广场',
             area: '北京2街道',
             business: '学校',
-            partners:'天华物业',
-            address:'北京广场1层'
+            partners: '天华物业',
+            address: '北京广场1层'
         },
         {
             key: '3',
@@ -561,8 +561,8 @@ mockjs.mock('/api/api6', 'get', {          //node
             pointnames: '北京广场',
             area: '北京2街道',
             business: '学校',
-            partners:'天华物业',
-            address:'北京广场1层'
+            partners: '天华物业',
+            address: '北京广场1层'
         },
         {
             key: '4',
@@ -570,8 +570,8 @@ mockjs.mock('/api/api6', 'get', {          //node
             pointnames: '北京广场',
             area: '北京4街道',
             business: '学校',
-            partners:'天华物业',
-            address:'北京广场1层'
+            partners: '天华物业',
+            address: '北京广场1层'
         },
         {
             key: '5',
@@ -579,8 +579,8 @@ mockjs.mock('/api/api6', 'get', {          //node
             pointnames: '北京广场',
             area: '北京1街道',
             business: '学校',
-            partners:'天华物业',
-            address:'北京广场1层'
+            partners: '天华物业',
+            address: '北京广场1层'
         },
         {
             key: '6',
@@ -588,8 +588,8 @@ mockjs.mock('/api/api6', 'get', {          //node
             pointnames: '北京广场',
             area: '北京1街道',
             business: '学校',
-            partners:'天华物业',
-            address:'北京广场1层'
+            partners: '天华物业',
+            address: '北京广场1层'
         },
         {
             key: '7',
@@ -597,8 +597,8 @@ mockjs.mock('/api/api6', 'get', {          //node
             pointnames: '北京广场',
             area: '北京1街道',
             business: '学校',
-            partners:'天华物业',
-            address:'北京广场1层'
+            partners: '天华物业',
+            address: '北京广场1层'
         },
     ]
 })
@@ -611,9 +611,9 @@ mockjs.mock('/api/api7', 'get', {          //partner
             partner: '天华物业',
             account: '13800000',
             quantity: '99',
-            Divide:'88',
-            contacts:'JOJO',
-            phone:'17766233007',
+            Divide: '88',
+            contacts: 'JOJO',
+            phone: '17766233007',
         },
         {
             key: '2',
@@ -621,9 +621,9 @@ mockjs.mock('/api/api7', 'get', {          //partner
             partner: '天华物业',
             account: '13800000',
             quantity: '99',
-            Divide:'88',
-            contacts:'JOJO',
-            phone:'17766233007',
+            Divide: '88',
+            contacts: 'JOJO',
+            phone: '17766233007',
         },
         {
             key: '3',
@@ -631,9 +631,120 @@ mockjs.mock('/api/api7', 'get', {          //partner
             partner: '天华物业',
             account: '13800000',
             quantity: '99',
-            Divide:'88',
-            contacts:'JOJO',
-            phone:'17766233007',
+            Divide: '88',
+            contacts: 'JOJO',
+            phone: '17766233007',
+        },
+    ]
+})
+mockjs.mock('/api/api8', 'get', {          //vmtype
+    status: true,
+    data: [
+        {
+            key: '1',
+            num: '1',
+            typenames: '饮料机',
+            typecode: 'AC204',
+            Cargoline: '10',
+            Cargorow: '10',
+        },
+        {
+            key: '2',
+            num: '2',
+            typenames: '综合机',
+            typecode: 'A205',
+            Cargoline: '10',
+            Cargorow: '10',
+        },
+        {
+            key: '3',
+            num: '3',
+            typenames: '零食机',
+            typecode: 'A1',
+            Cargoline: '10',
+            Cargorow: '10',
+        },
+    ]
+})
+mockjs.mock('/api/api9', 'get', {          //vmstatus
+    status: true,
+    data: [
+        {
+            key: '1',
+            num: '1',
+            typecode: '010001',
+            type: '综合机',
+            address: '北京悦荟广场122',
+            typestatus: '运营',
+            status: ['在线'],
+        },
+        {
+            key: '2',
+            num: '2',
+            typecode: '010001',
+            type: '综合机',
+            address: '北京悦荟广场122',
+            typestatus: '运营',
+            status: ['在线'],
+        },
+        {
+            key: '3',
+            num: '3',
+            typecode: '010001',
+            type: '综合机',
+            address: '北京悦荟广场122',
+            typestatus: '运营',
+            status: ['在线'],
+        },
+        {
+            key: '4',
+            num: '4',
+            typecode: '010001',
+            type: '综合机',
+            address: '北京悦荟广场122',
+            typestatus: '运营',
+            status: ['在线'],
+        },
+        {
+            key: '5',
+            num: '5',
+            typecode: '010001',
+            type: '综合机',
+            address: '北京悦荟广场122',
+            typestatus: '运营',
+            status: ['掉线'],
+        },
+    ]
+})
+mockjs.mock('/api/api10', 'get', {          //report
+    status: true,
+    data: [
+        {
+            key: '1',
+            orderdate:'2022-08-14',
+            partners:'天华物业',
+            share:'20%',
+            income:'6145',
+            sum:'315',
+            group:'1229',
+        },
+        {
+            key: '2',
+            orderdate:'2022-08-13',
+            partners:'天华物业',
+            share:'20%',
+            income:'615',
+            sum:'123',
+            group:'1229',
+        },
+        {
+            key: '3',
+            orderdate:'2022-08-12',
+            partners:'天华物业',
+            share:'20%',
+            income:'125',
+            sum:'15',
+            group:'25',
         },
     ]
 })
