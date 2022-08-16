@@ -1,15 +1,20 @@
 import { Select, DatePicker, Button, Table } from "antd";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Dayseles from "./component/dayseles/dayseles";
 import Monthsales from "./component/monthsales/monthsales";
 import './report.less';
 import { SearchOutlined } from '@ant-design/icons';
 import axios from "axios";
+import moment from 'moment';
+import { Context } from '../../../../App';
 
 function Report() {
     const { Option } = Select
     const { Column } = Table
     const { RangePicker } = DatePicker
+    const dateFormat = 'YYYY/MM/DD'
+    const { enddate } = useContext(Context)
+    const { startdate } = useContext(Context)
     const [tabledata, setTabledata] = useState()
 
     const onChange = (value, dateString) => {
@@ -52,7 +57,9 @@ function Report() {
                 日期:
                 <RangePicker
                     style={{ margin: '0 20px' }}
-                    onChange={onChange} />
+                    onChange={onChange}
+                    defaultValue={[moment(startdate, dateFormat), moment(enddate, dateFormat)]}
+                    format={dateFormat} />
                 <Button type="primary" icon={<SearchOutlined />} >
                     查询
                 </Button>

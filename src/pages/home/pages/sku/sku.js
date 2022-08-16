@@ -1,11 +1,22 @@
 import './sku.less';
 import React, { useEffect, useState } from "react";
 import 'antd/dist/antd.css';
-import { Button, Input, Table, Modal, Pagination, Form, Select, InputNumber } from "antd";
-import { SearchOutlined, PlusCircleOutlined } from '@ant-design/icons';
+import { Button, Input, Table, Modal, Pagination, Form, Select, InputNumber, message, Upload } from "antd";
+import { SearchOutlined, PlusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import Column from "antd/lib/table/Column";
 import axios from "axios";
 import '../../../../api/api';
+import ImgCrop from 'antd-img-crop';
+
+const getBase64 = (file) =>                    //图片转64位,写于括号外
+    new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+
+        reader.onload = () => resolve(reader.result);
+
+        reader.onerror = (error) => reject(error);
+    });
 
 function Sku() {
     const { Option } = Select;
@@ -28,6 +39,51 @@ function Sku() {
             showTable()
         }, 0)
     }, [])
+
+    const [fileList, setFileList] = useState([])          //文件列表
+    const [previewVisible, setPreviewVisible] = useState(false);    //弹窗默认不显示
+    const [previewImage, setPreviewImage] = useState('');     //弹窗内图片
+    const [previewTitle, setPreviewTitle] = useState('');     //弹窗标题
+
+    const handleCancel5 = () => setPreviewVisible(false);    //关闭弹窗
+
+    const handlePreview = async (file) => {           //预览功能
+        if (!file.url && !file.preview) {
+            file.preview = await getBase64(file.originFileObj);
+        }
+
+        setPreviewImage(file.url || file.preview);
+        setPreviewVisible(true);
+        setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
+    };
+
+    const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);   //点击添加文件
+
+    const beforeUpload = (file) => {
+        const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';         //判断上传文件类型
+        if (!isJpgOrPng) {
+            message.error('You can only upload JPG/PNG file!');      //错误提示
+        }
+        const isLt2M = file.size / 1024 / 1024 < 2;             //判断文件大小是否小于2M
+        if (!isLt2M) {
+            message.error('Image must smaller than 2MB!');        //错误提示
+        }
+        return isJpgOrPng && isLt2M;
+    };
+
+    const uploadButton = (             //无文件时的显示内容
+        <div>
+            <PlusOutlined />
+            <div
+                style={{
+                    marginTop: 8,
+                }}
+            >
+                Upload
+            </div>
+        </div>
+    );
+
 
     const showTable = () => {
         axios({
@@ -57,9 +113,11 @@ function Sku() {
 
     const handleCancel = () => {
         setIsModalVisible(false);
+        setFileList([])
     };
     const handleCancel2 = () => {
         setIsModalVisible(false);
+        setFileList([])
     };
 
     const change = (page, pageSize) => {
@@ -209,7 +267,23 @@ function Sku() {
                                     message: '请上传'
                                 }
                             ]}
-                        ></Form.Item>
+                        >
+                            <ImgCrop grid rotate>
+                                <Upload
+                                    name='avatar'
+                                    listType='picture-card'            //listType上传列表的内建样式，支持三种基本样式 text, picture 和 picture-card
+                                    //className='avatar-uploader'
+                                    //showUploadList={false}              //showUploadList是否展示文件列表,默认为true,关闭则不会预览文件
+                                    action=""         //文件上传地址
+                                    beforeUpload={beforeUpload}         //beforeUpload上传文件之前的钩子，参数为上传的文件,限制用户上传的图片格式和大小
+                                    onChange={handleChange}            //改变时
+                                    fileList={fileList}                //文件来源
+                                    onPreview={handlePreview}          //预览功能
+                                >
+                                    {fileList.length >= 1 ? null : uploadButton}
+                                </Upload>
+                            </ImgCrop>
+                        </Form.Item>
                         <Form.Item>
                             <div className="addbutton">
                                 <Button
@@ -224,6 +298,20 @@ function Sku() {
                             </div>
                         </Form.Item>
                     </Form>
+                </Modal>
+                <Modal                      //预览的弹窗
+                    zIndex='1001'               //Modal默认zIndex为1000
+                    visible={previewVisible}       //是否显示  
+                    title={previewTitle}           //标题
+                    footer={null}
+                    onCancel={handleCancel5}>
+                    <img
+                        alt="example"
+                        style={{
+                            width: '100%',
+                        }}
+                        src={previewImage}
+                    />
                 </Modal>
                 <div className="paginations">
                     <Pagination

@@ -1,14 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import './order.less';
 import 'antd/dist/antd.css';
 import { Button, Input, DatePicker, Table, Modal, Pagination } from "antd";
 import { SearchOutlined } from '@ant-design/icons';
 import Column from "antd/lib/table/Column";
 import axios from "axios";
-import '../../../../api/api'
+import '../../../../api/api';
+import moment from 'moment';
+import { Context } from "../../../../App";
 
 function Order() {
     const { RangePicker } = DatePicker   //日期选择器
+    const dateFormat = 'YYYY/MM/DD'
+    const { startdate } = useContext(Context)
+    const { enddate } = useContext(Context)
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [tabeldata, setTabledata] = useState()
     const [tablelength, setTablelength] = useState(0)
@@ -69,7 +74,9 @@ function Order() {
                 选择日期:
                 {/* 大小通过Input修改 */}
                 <RangePicker className="picker"
-                    onChange={onChange} />
+                    onChange={onChange}
+                    defaultValue={[moment(startdate, dateFormat), moment(enddate, dateFormat)]}
+                    format={dateFormat} />
                 <Button type="primary" icon={<SearchOutlined />} >
                     查询
                 </Button>

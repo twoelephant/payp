@@ -1,20 +1,83 @@
 import './vmtype.less';
 import React, { useEffect, useState } from "react";
 import 'antd/dist/antd.css';
-import { Button, Input, Table, Modal, Pagination, Form, Select } from "antd";
-import { SearchOutlined, PlusCircleOutlined } from '@ant-design/icons';
+import { Button, Input, Table, Modal, Pagination, Form, Select, Upload, message } from "antd";
+import { SearchOutlined, PlusCircleOutlined, LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import Column from "antd/lib/table/Column";
 import axios from "axios";
 import '../../../../api/api';
+import ImgCrop from 'antd-img-crop';
+
+const getBase64 = (file) =>
+    new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+
+        reader.onload = () => resolve(reader.result);
+
+        reader.onerror = (error) => reject(error);
+    });
 
 function Vmtype() {
-    const { Option } = Select;
     const [form] = Form.useForm();       //默认写法
+    const [imageUrl, setImageUrl] = useState();
+    const [loading, setLoading] = useState(false);
+    const [fileList, setFileList] = useState([])
+
+
+
+    const [previewVisible, setPreviewVisible] = useState(false);
+    const [previewImage, setPreviewImage] = useState('');
+    const [previewTitle, setPreviewTitle] = useState('');
+
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [isModalVisible1, setIsModalVisible1] = useState(false);
     const [tabeldata, setTabledata] = useState()
     const [tablelength, setTablelength] = useState(0)
     const [current, setCurrent] = useState(1)
+
+
+
+    const handlePreview = async (file) => {
+        if (!file.url && !file.preview) {
+            file.preview = await getBase64(file.originFileObj);
+        }
+
+        setPreviewImage(file.url || file.preview);
+        setPreviewVisible(true);
+        setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
+    };
+
+    const uploadButton = (
+        <div>
+            <PlusOutlined />
+            <div
+                style={{
+                    marginTop: 8,
+                }}
+            >
+                Upload
+            </div>
+        </div>
+    );
+
+    const beforeUpload = (file) => {
+        const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+
+        if (!isJpgOrPng) {
+            message.error('You can only upload JPG/PNG file!');
+        }
+
+        const isLt2M = file.size / 1024 / 1024 < 2;
+
+        if (!isLt2M) {
+            message.error('Image must smaller than 2MB!');
+        }
+
+        return isJpgOrPng && isLt2M;
+    };
+
+    const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
 
     var mytime;
 
@@ -58,12 +121,18 @@ function Vmtype() {
         // }, 0);
     }
 
+    const handleCancel5 = () => {   //图片预览弹窗
+        setPreviewVisible(false);
+    };
+
     const handleCancel = () => {
         setIsModalVisible(false);
+        setFileList([]);
     };
     const handleCancel2 = () => {
         console.log(1111111);
         setIsModalVisible(false);
+        setFileList([]);
     };
     const handleCancel21 = () => {
         setIsModalVisible1(false);
@@ -165,15 +234,41 @@ function Vmtype() {
                                 maxLength={15} />
                         </Form.Item>
                         <Form.Item
-                            name='typeimg'
                             label='型号图片'
-                            rules={[
-                                {
-                                    required: true,
-                                    message: '请添加图片'
-                                }
-                            ]}
+                        // name='typeimg'
+                        // rules={[
+                        //     {
+                        //         required: true,
+                        //         message: '请添加图片'
+                        //     }
+                        // ]}
                         >
+                            <ImgCrop grid rotate>
+                                <Upload
+                                    name='avatar'
+                                    listType='picture-card'
+                                    // showUploadList={false}
+                                    action="http://106.15.65.54:8000/api/product/uploadimg"
+                                    beforeUpload={beforeUpload}
+                                    onChange={handleChange}
+                                    fileList={fileList}
+                                    onPreview={handlePreview}
+                                >
+                                    {/* {imageUrl ? (
+                                    <img
+                                        src={imageUrl}
+                                        alt="avatar"
+                                        style={{
+                                            width: '100%',
+                                        }}
+                                    />
+                                ) : (
+                                    uploadButton
+                                )} */}
+                                    {fileList.length >= 1 ? null : uploadButton}
+                                </Upload>
+                            </ImgCrop>
+
                         </Form.Item>
                         <Form.Item>
                             <div className="addbutton">
@@ -210,6 +305,24 @@ function Vmtype() {
                         </div>
                     </div>
                 </Modal>
+
+
+                <Modal
+                    zIndex='1001'
+                    visible={previewVisible}
+                    title={previewTitle}
+                    footer={null}
+                    onCancel={handleCancel5}>
+                    <img
+                        alt="example"
+                        style={{
+                            width: '100%',
+                        }}
+                        src={previewImage}
+                    />
+                </Modal>
+
+
                 <div className="paginations">
                     <Pagination
                         current={current}  //当前
